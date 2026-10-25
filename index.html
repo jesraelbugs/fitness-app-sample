@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fitness Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Fitness Tracker</h1>
+    <nav>
+      <button data-tab="plans" class="active">Plans</button>
+      <button data-tab="log">Log</button>
+      <button data-tab="weight">Weight</button>
+      <button data-tab="progress">Progress</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="plans" class="tab active">
+      <h2>Workout plans</h2>
+      <div id="plan-list"></div>
+    </section>
+
+    <section id="log" class="tab">
+      <h2>Log a workout</h2>
+      <form id="workout-form">
+        <label>Date <input type="date" id="workout-date" required></label>
+        <div id="exercise-rows"></div>
+        <div class="row">
+          <button type="button" id="add-exercise" class="secondary">+ Add exercise</button>
+          <button type="submit">Save workout</button>
+        </div>
+      </form>
+      <h2>History</h2>
+      <ul id="workout-history" class="list"></ul>
+    </section>
+
+    <section id="weight" class="tab">
+      <h2>Body weight</h2>
+      <form id="weight-form" class="row">
+        <input type="date" id="weight-date" required>
+        <input type="number" id="weight-value" step="0.1" min="0" placeholder="kg" required>
+        <button type="submit">Add</button>
+      </form>
+      <canvas id="weight-chart"></canvas>
+      <ul id="weight-history" class="list"></ul>
+    </section>
+
+    <section id="progress" class="tab">
+      <h2>Workouts per week</h2>
+      <canvas id="weekly-chart"></canvas>
+      <h2>Heaviest weight per exercise</h2>
+      <select id="exercise-select"></select>
+      <canvas id="exercise-chart"></canvas>
+    </section>
+  </main>
+
+  <template id="exercise-row-template">
+    <div class="exercise-row">
+      <input class="ex-name" placeholder="Exercise" required>
+      <input class="ex-sets" type="number" min="1" placeholder="Sets" required>
+      <input class="ex-reps" type="number" min="1" placeholder="Reps" required>
+      <input class="ex-weight" type="number" min="0" step="0.5" placeholder="kg">
+      <button type="button" class="remove" aria-label="Remove exercise">×</button>
+    </div>
+  </template>
+
+  <script src="vendor/chart.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
